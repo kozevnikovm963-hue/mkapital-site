@@ -13,7 +13,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "types": ["vite/client"]
   },
-  "include": ["src", "app/page.tsx", "vite.config.ts"]
+  "include": ["src", "app", "vite.config.ts"]
 }

@@ -3,8 +3,8 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { LineIcon, type IconName } from "./icons";
 
-type ModalType = "consultation" | "situation" | null;
-type LegalType = "privacy" | "consent" | "terms" | null;
+export type ModalType = "consultation" | "situation" | null;
+export type LegalType = "privacy" | "consent" | "terms" | null;
 
 const situations = [
   { icon: "wallet" as IconName, title: "Осталась сумма материнского капитала", text: "На сертификате остались средства, и вы не знаете, куда их направить." },
@@ -47,11 +47,11 @@ const faqs = [
 
 const situationOptions = ["Осталась сумма материнского капитала", "Ипотека сейчас не подходит", "Хочу найти другой вариант использования средств", "Интересуют специальные условия и предложения", "Пока изучаю доступные возможности"];
 
-function ArrowIcon({ diagonal = false }: { diagonal?: boolean }) {
+export function ArrowIcon({ diagonal = false }: { diagonal?: boolean }) {
   return <svg className={`arrow-icon${diagonal ? " arrow-icon-diagonal" : ""}`} viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d={diagonal ? "M5 15 15 5M8 5h7v7" : "M3 10h13M11 5l5 5-5 5"} /></svg>;
 }
 
-function ConsultationModal({ type, onClose }: { type: Exclude<ModalType, null>; onClose: () => void }) {
+export function ConsultationModal({ type, onClose }: { type: Exclude<ModalType, null>; onClose: () => void }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [situation, setSituation] = useState("");
@@ -111,7 +111,7 @@ const legalDocuments = {
   },
 } as const;
 
-function LegalModal({ type, onClose }: { type: Exclude<LegalType, null>; onClose: () => void }) {
+export function LegalModal({ type, onClose }: { type: Exclude<LegalType, null>; onClose: () => void }) {
   const closeRef = useRef<HTMLButtonElement>(null);
   const legalDocument = legalDocuments[type];
   useEffect(() => {
@@ -152,7 +152,7 @@ export default function Home() {
 
     <section className="final-cta"><div className="final-orb one" /><div className="final-orb two" /><div className="final-copy reveal"><p className="eyebrow"><span /> Остались вопросы?</p><h2>Начните с бесплатной консультации</h2><p>Расскажите о своей ситуации — поможем разобраться в доступных возможностях и предложениях партнёров.</p><button className="button button-light" onClick={openConsultation}>Получить консультацию<ArrowIcon /></button><small>Бесплатно • Конфиденциально • Без обязательств</small></div></section>
 
-    <footer><div className="footer-top"><div className="footer-brand"><img src="./logo.webp" alt="МК Онлайн" /><p>Информационно-партнёрский сервис по вопросам использования материнского капитала.</p></div><div><h3>Навигация</h3><a href="#possibilities">Возможности</a><a href="#process">Как это работает</a><a href="#benefits">Преимущества</a><a href="#faq">Вопросы и ответы</a></div><div className="footer-documents"><h3>Документы</h3><button onClick={() => setLegal("privacy")}>Политика конфиденциальности</button><button onClick={() => setLegal("consent")}>Согласие на обработку данных</button><button onClick={() => setLegal("terms")}>Пользовательское соглашение</button></div><div><h3>Важно</h3><p>Информация на сайте носит ознакомительный характер и не является публичной офертой.</p></div></div><div className="footer-note"><p><b>МК Онлайн — информационно-партнёрский сервис.</b> Условия и оформление выбранного решения предоставляются соответствующей организацией-партнёром.</p></div><div className="footer-bottom"><span>© МК Онлайн, 2026</span><span>Работаем по всей России</span></div></footer>
+    <footer><div className="footer-top"><div className="footer-brand"><img src="./logo.webp" alt="МК Онлайн" /><p>Информационно-партнёрский сервис по вопросам использования материнского капитала.</p></div><div><h3>Навигация</h3><a href="#possibilities">Возможности</a><a href="#process">Как это работает</a><a href="#benefits">Преимущества</a><a href="#faq">Вопросы и ответы</a></div><div className="footer-documents"><h3>Документы</h3><button onClick={() => setLegal("privacy")}>Политика конфиденциальности</button><button onClick={() => setLegal("consent")}>Согласие на обработку данных</button><button onClick={() => setLegal("terms")}>Пользовательское соглашение</button></div><div><h3>Важно</h3><p>Информация на сайте носит ознакомительный характер и не является публичной офертой.</p></div></div><div className="home-seo-links"><h3>Полезные материалы</h3><div><a href="./materinskiy-kapital-nalichnymi/">Материнский капитал наличными</a><a href="./obnalichit-materinskiy-kapital/">Можно ли обналичить маткапитал</a><a href="./zaim-pod-materinskiy-kapital/">Займ под материнский капитал</a><a href="./ostatok-materinskogo-kapitala/">Как использовать остаток</a><a href="./na-chto-potratit-materinskiy-kapital/">На что потратить маткапитал</a></div></div><div className="footer-note"><p><b>МК Онлайн — информационно-партнёрский сервис.</b> Условия и оформление выбранного решения предоставляются соответствующей организацией-партнёром.</p></div><div className="footer-bottom"><span>© МК Онлайн, 2026</span><span>Работаем по всей России</span></div></footer>
     {modal && <ConsultationModal type={modal} onClose={() => setModal(null)} />}
     {legal && <LegalModal type={legal} onClose={() => setLegal(null)} />}
   </main>;

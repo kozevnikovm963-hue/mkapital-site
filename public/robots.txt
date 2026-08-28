@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kozevnikovm963-hue.github.io/mkapital-site/sitemap.xml

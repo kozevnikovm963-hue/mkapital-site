@@ -34,6 +34,7 @@ export default function SeoPage({ data }: { data: SeoPageData }) {
   const openConsultation = () => setModal("consultation");
   const openSituation = () => setModal("situation");
   const closeMenu = () => setMenuOpen(false);
+  const [h1Before, h1After = ""] = data.h1.split(data.h1Accent);
 
   return <main className="seo-page" id="top">
     <header className="site-header">
@@ -47,7 +48,7 @@ export default function SeoPage({ data }: { data: SeoPageData }) {
     <section className="seo-hero">
       <div className="seo-hero-copy">
         <div className="breadcrumbs" aria-label="Хлебные крошки"><a href={home}>Главная</a><span aria-hidden="true">/</span><span>{data.crumb}</span></div>
-        <h1>{data.h1}</h1>
+        <h1>{h1Before}<em>{data.h1Accent}</em>{h1After}</h1>
         {data.lead.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         <div className="seo-prompt"><LineIcon name="message" /><b>{data.prompt}</b></div>
         <button className="button button-primary" onClick={openSituation}>{data.heroCta}<ArrowIcon /></button>
@@ -56,28 +57,26 @@ export default function SeoPage({ data }: { data: SeoPageData }) {
       <div className="seo-hero-photo"><img src={`${base}hero-family.webp`} alt="Семья изучает варианты использования материнского капитала" /><i className="photo-accent seo-accent-one" /><i className="photo-accent seo-accent-two" /></div>
     </section>
 
-    {data.sections.map((section, sectionIndex) => <section className={`seo-content section ${sectionIndex % 2 ? "seo-content-tinted" : ""}`} id={sectionIndex === 0 ? "options" : undefined} key={section.title}>
+    {data.sections.map((section, sectionIndex) => <section className={`seo-content section seo-section-${sectionIndex + 1} ${sectionIndex % 2 ? "seo-content-tinted" : ""} ${section.variant === "split" ? "seo-content-split" : ""}`} id={sectionIndex === 0 ? "options" : undefined} key={section.title}>
       <div className="seo-section-heading"><h2>{section.title}</h2><p>{section.intro}</p></div>
       <div className={`seo-card-grid count-${section.cards.length}`}>{section.cards.map((card, index) => <article className={index === section.cards.length - 1 && section.cards.length === 3 ? "seo-card featured" : "seo-card"} key={card.title}>
         <span className={index % 2 ? "icon violet" : "icon"}><LineIcon name={card.icon} /></span><h3>{card.title}</h3><p>{card.text}</p>
         {card.link && <a className="seo-inline-link" href={`${base}${card.link}/`}>{card.linkLabel}<ArrowIcon /></a>}
+        {section.ctaInLastCard && index === section.cards.length - 1 && <button className="button button-outline seo-card-cta" onClick={openSituation}>{section.cta}<ArrowIcon /></button>}
       </article>)}</div>
-      {section.note && <div className="seo-note"><LineIcon name="shield" /><p>{section.note}</p></div>}
-      {section.cta && <div className="center-action"><button className="button button-primary" onClick={openSituation}>{section.cta}<ArrowIcon /></button></div>}
+      {section.note && section.ctaStyle === "outline" ? <div className="seo-note seo-note-action"><LineIcon name="sparkle" /><p>{section.note}</p><button className="button button-outline" onClick={openSituation}>{section.cta}<ArrowIcon /></button></div> : <>
+        {section.note && <div className="seo-note"><LineIcon name="shield" /><p>{section.note}</p></div>}
+        {section.cta && !section.ctaInLastCard && <div className="center-action"><button className={`button ${section.ctaStyle === "outline" ? "button-outline" : "button-primary"}`} onClick={openSituation}>{section.cta}<ArrowIcon /></button></div>}
+      </>}
     </section>)}
-
-    <section className="section seo-related" aria-labelledby="related-heading">
-      <div className="seo-section-heading"><p className="eyebrow"><span /> Полезные материалы</p><h2 id="related-heading">Разные ситуации — разные возможности</h2><p>Изучите подробные материалы по смежным вопросам материнского капитала.</p></div>
-      <div className="related-links">{usefulPages.filter(([, slug]) => slug !== data.slug).map(([label, slug]) => <a href={`${base}${slug}/`} key={slug}><span>{label}</span><ArrowIcon /></a>)}</div>
-    </section>
 
     <section className="section process seo-process" id="process">
       <div className="seo-section-heading"><p className="eyebrow"><span /> Четыре шага</p><h2>Как всё проходит</h2><p>От первого вопроса до понятного плана дальнейших действий.</p></div>
       <div className="steps">{steps.map((step) => <article className="step-card" key={step.n}><b>{step.n}</b><span className="step-icon"><LineIcon name={step.icon} /></span><h3>{step.title}</h3><p>{step.text}</p></article>)}</div>
-      <div className="support-strip"><span className="support-mark"><LineIcon name="shield" /></span><div><h3>Сопровождаем на всём пути</h3><p>Остаёмся на связи, отвечаем на вопросы и объясняем следующие шаги.</p></div><button className="button button-small" onClick={openConsultation}>Получить консультацию</button></div>
+      {data.showSupport && <div className="support-strip"><span className="support-mark"><LineIcon name="shield" /></span><div><h3>Сопровождаем на всём пути</h3><p>Остаёмся на связи, отвечаем на вопросы и объясняем следующие шаги.</p></div></div>}
     </section>
 
-    <aside className="section official-sources" aria-labelledby="sources-heading"><span className="support-mark"><LineIcon name="document" /></span><div><h2 id="sources-heading">Информация проверена по официальным материалам</h2><p>Актуализировано 28 августа 2026 года. Условия зависят от вашей ситуации и могут изменяться.</p><div><a href="https://sfr.gov.ru/grazhdanam/semyam_s_detmi/materinskij_kapital/rasporyazhenije_sredstvami" target="_blank" rel="noreferrer">Порядок распоряжения средствами — СФР <ArrowIcon diagonal /></a><a href="https://sfr.gov.ru/grazhdanam/semyam_s_detmi/materinskij_kapital/ostatok" target="_blank" rel="noreferrer">Выплата остатка — СФР <ArrowIcon diagonal /></a><a href="https://sfr.gov.ru/grazhdanam/semyam_s_detmi/materinskij_kapital/zhile/" target="_blank" rel="noreferrer">Улучшение жилищных условий — СФР <ArrowIcon diagonal /></a></div></div></aside>
+    {data.benefits && <section className="section seo-benefits"><div className="seo-section-heading"><h2>Почему обращаются в МК Онлайн</h2></div><div className="seo-benefit-grid">{data.benefits.map((benefit, index) => <article key={benefit.title}><span className={index % 2 ? "icon violet" : "icon"}><LineIcon name={benefit.icon} /></span><div><h3>{benefit.title}</h3><p>{benefit.text}</p></div></article>)}</div></section>}
 
     <section className="section faq seo-faq" id="faq">
       <div className="seo-section-heading"><p className="eyebrow"><span /> Коротко о главном</p><h2>Вопросы и ответы</h2></div>
@@ -86,7 +85,7 @@ export default function SeoPage({ data }: { data: SeoPageData }) {
       </div>
     </section>
 
-    <footer><div className="footer-top"><div className="footer-brand"><a href={home}><img src={`${base}logo.webp`} alt="МК Онлайн" /></a><p>Информационно-партнёрский сервис по вопросам использования материнского капитала.</p></div><div><h3>Материалы</h3>{usefulPages.slice(0, 4).map(([label, slug]) => <a href={`${base}${slug}/`} key={slug}>{label}</a>)}</div><div className="footer-documents"><h3>Документы</h3><button onClick={() => setLegal("privacy")}>Политика конфиденциальности</button><button onClick={() => setLegal("consent")}>Согласие на обработку данных</button><button onClick={() => setLegal("terms")}>Пользовательское соглашение</button></div><div><h3>Мы на связи</h3><p>Оставьте заявку — специалист свяжется с вами удобным способом.</p><button className="button button-small" onClick={openConsultation}>Получить консультацию</button></div></div><div className="footer-note"><p><b>Важно:</b> материалы носят информационный характер. Возможность распоряжения средствами определяется СФР, законодательством и условиями выбранной организации.</p></div><div className="footer-bottom"><span>© МК Онлайн, 2026</span><span>Работаем по всей России</span></div></footer>
+    <footer><div className="footer-top"><div className="footer-brand"><a href={home}><img src={`${base}logo.webp`} alt="МК Онлайн" /></a><p>Информационно-партнёрский сервис по вопросам использования материнского капитала.</p></div><div><h3>Материалы</h3>{usefulPages.filter(([, slug]) => slug !== data.slug).map(([label, slug]) => <a href={`${base}${slug}/`} key={slug}>{label}</a>)}</div><div className="footer-documents"><h3>Документы</h3><button onClick={() => setLegal("privacy")}>Политика конфиденциальности</button><button onClick={() => setLegal("consent")}>Согласие на обработку данных</button><button onClick={() => setLegal("terms")}>Пользовательское соглашение</button></div><div><h3>Мы на связи</h3><p>Оставьте заявку — специалист свяжется с вами удобным способом.</p><button className="button button-small" onClick={openConsultation}>Получить консультацию</button></div></div><div className="footer-note"><p><b>Важно:</b> материалы носят информационный характер. Возможность распоряжения средствами определяется СФР, законодательством и условиями выбранной организации.</p></div><div className="footer-bottom"><span>© МК Онлайн, 2026</span><span>Работаем по всей России</span></div></footer>
 
     {modal && <ConsultationModal type={modal} onClose={() => setModal(null)} />}
     {legal && <LegalModal type={legal} onClose={() => setLegal(null)} />}

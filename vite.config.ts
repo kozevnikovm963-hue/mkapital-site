@@ -1,10 +1,10 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
-export default defineConfig({
+export default defineConfig(({ isSsrBuild }) => ({
   base: "/mkapital-site/",
   plugins: [react()],
-  build: {
+  build: isSsrBuild ? undefined : {
     rollupOptions: {
       input: {
         main: "index.html",
@@ -16,4 +16,4 @@ export default defineConfig({
       },
     },
   },
-});
+}));

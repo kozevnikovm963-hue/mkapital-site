@@ -84,6 +84,6 @@ footer{margin-top:28px;margin-bottom:26px;padding:52px;background:#fff;border-ra
 .seo-page .faq-item h3 button{font-size:15px}
 .seo-page .faq-answer p{font-size:14px}
 .seo-page .question-card p{font-size:14px}
-@media(min-width:1001px){.home-page .hero-photo-layout{grid-template-columns:1.12fr .88fr}.home-page .hero-photo-layout .hero-copy{padding-right:42px}.home-page .hero-photo-layout h1{max-width:760px;font-size:clamp(44px,3.4vw,49px)}.home-page .hero-photo-layout .hero-lead{max-width:650px;font-size:22px;line-height:1.52}}
+@media(min-width:1001px){.home-page .hero-photo-layout{grid-template-columns:1.12fr .88fr}.home-page .hero-photo-layout .hero-copy{padding-left:clamp(84px,8vw,152px);padding-right:42px}.home-page .hero-photo-layout h1{max-width:760px;font-size:clamp(44px,3.4vw,49px)}.home-page .hero-photo-layout .hero-lead{max-width:650px;font-size:22px;line-height:1.52}}
 @media(max-width:1000px){.seo-page .seo-content-split{grid-template-columns:1fr}}
 @media(max-width:680px){.seo-page .step-card{border:0}.seo-page .seo-section-heading h2{font-size:27px}}

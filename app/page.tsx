@@ -152,7 +152,38 @@ export default function Home() {
 
     <section className="final-cta"><div className="final-orb one" /><div className="final-orb two" /><div className="final-copy reveal"><p className="eyebrow"><span /> Остались вопросы?</p><h2>Начните с бесплатной консультации</h2><p>Расскажите о своей ситуации - поможем разобраться в доступных возможностях и предложениях партнёров.</p><button className="button button-light" onClick={openConsultation}>Получить консультацию<ArrowIcon /></button><small>Бесплатно • Конфиденциально • Без обязательств</small></div></section>
 
-    <footer><div className="footer-top"><div className="footer-brand"><img src="./logo.webp" alt="МК Онлайн" /><p>Информационно-партнёрский сервис по вопросам использования материнского капитала.</p></div><div><h3>Навигация</h3><a href="#possibilities">Возможности</a><a href="#process">Как это работает</a><a href="#benefits">Преимущества</a><a href="#faq">Вопросы и ответы</a></div><div className="footer-documents"><h3>Документы</h3><button onClick={() => setLegal("privacy")}>Политика конфиденциальности</button><button onClick={() => setLegal("consent")}>Согласие на обработку данных</button><button onClick={() => setLegal("terms")}>Пользовательское соглашение</button></div><div><h3>Важно</h3><p>Информация на сайте носит ознакомительный характер и не является публичной офертой.</p></div></div><div className="home-seo-links"><h3>Полезные материалы</h3><div><a href="./materinskiy-kapital-nalichnymi/">Материнский капитал наличными</a><a href="./obnalichit-materinskiy-kapital/">Можно ли обналичить маткапитал</a><a href="./zaim-pod-materinskiy-kapital/">Займ под материнский капитал</a><a href="./ostatok-materinskogo-kapitala/">Как использовать остаток</a><a href="./na-chto-potratit-materinskiy-kapital/">На что потратить маткапитал</a></div></div><div className="footer-note"><p><b>МК Онлайн - информационно-партнёрский сервис.</b> Условия и оформление выбранного решения предоставляются соответствующей организацией-партнёром.</p></div><div className="footer-bottom"><span>© МК Онлайн, 2026</span><span>Работаем по всей России</span></div></footer>
+    <footer className="site-footer">
+      <div className="footer-top">
+        <div className="footer-brand">
+          <a href="#top"><img src="./logo.webp" alt="МК Онлайн" /></a>
+          <p>Сервис по вопросам использования материнского капитала</p>
+        </div>
+        <div>
+          <h3>Навигация</h3>
+          <a href="#possibilities">Возможности</a>
+          <a href="#process">Как это работает</a>
+          <a href="#benefits">Преимущества</a>
+          <a href="#faq">Вопросы</a>
+        </div>
+        <div className="footer-documents">
+          <h3>Документы</h3>
+          <button onClick={() => setLegal("privacy")}>Политика обработки персональных данных</button>
+          <button onClick={() => setLegal("terms")}>Пользовательское соглашение</button>
+          <button onClick={() => setLegal("consent")}>Согласие на обработку данных</button>
+        </div>
+        <div className="footer-contacts">
+          <h3>Мы на связи</h3>
+          <div className="contact-grid">
+            <span><LineIcon name="telegram" />Telegram</span>
+            <span><LineIcon name="whatsapp" />WhatsApp</span>
+            <span><LineIcon name="vk" />ВКонтакте</span>
+            <span><LineIcon name="max" />Макс</span>
+          </div>
+          <a className="footer-email" href="mailto:info@mkapital.online"><LineIcon name="mail" />info@mkapital.online</a>
+        </div>
+      </div>
+      <div className="footer-bottom"><span>© 2025 МК Онлайн - сервис по вопросам использования материнского капитала</span></div>
+    </footer>
     {modal && <ConsultationModal type={modal} onClose={() => setModal(null)} />}
     {legal && <LegalModal type={legal} onClose={() => setLegal(null)} />}
   </main>;

@@ -80,7 +80,7 @@ export default function SeoPage({ data }: { data: SeoPageData }) {
       </div>
     </section>
 
-    <footer>
+    <footer className="site-footer">
       <div className="footer-top">
         <div className="footer-brand">
           <a href={home}><img src={`${base}logo.webp`} alt="МК Онлайн" /></a>

@@ -32,7 +32,7 @@ export default function SeoPage({ data }: { data: SeoPageData }) {
 
   return <main className="seo-page" id="top">
     <header className="site-header">
-      <a className="brand" href={home} aria-label="МК Онлайн — на главную"><img src={`${base}logo.webp`} alt="МК Онлайн" /></a>
+      <a className="brand" href={home} aria-label="МК Онлайн - на главную"><img src={`${base}logo.webp`} alt="МК Онлайн" /></a>
       <nav aria-label="Основная навигация"><a href="#options">Возможности</a><a href="#process">Как это работает</a><a href={benefitsHref}>Преимущества</a><a href="#faq">Вопросы</a></nav>
       <button className="button button-small header-cta" onClick={openConsultation}>Получить консультацию</button>
       <button className="menu-toggle" aria-label="Открыть меню" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}><i /><i /></button>
@@ -76,7 +76,7 @@ export default function SeoPage({ data }: { data: SeoPageData }) {
     <section className="section faq seo-faq" id="faq">
       <div className="seo-section-heading"><p className="eyebrow"><span /> Коротко о главном</p><h2>Вопросы и ответы</h2></div>
       <div className="seo-faq-layout"><div className="faq-list">{data.faqs.map(([question, answer], index) => { const isOpen = openFaq === index; return <article className={`faq-item${isOpen ? " open" : ""}`} key={question}><h3><button aria-expanded={isOpen} onClick={() => setOpenFaq(isOpen ? null : index)}><span><b>{String(index + 1).padStart(2, "0")}</b>{question}</span><i aria-hidden="true">{isOpen ? "−" : "+"}</i></button></h3><div className="faq-answer"><p>{answer}</p></div></article>; })}</div>
-        <aside className="question-card"><span><LineIcon name="question" /></span><h3>Не нашли ответ на свой вопрос?</h3><p>Задайте его нашему специалисту — мы с радостью поможем.</p><button className="text-link" onClick={openConsultation}>Задать вопрос <ArrowIcon /></button></aside>
+        <aside className="question-card"><span><LineIcon name="question" /></span><h3>Не нашли ответ на свой вопрос?</h3><p>Задайте его нашему специалисту - мы с радостью поможем.</p><button className="text-link" onClick={openConsultation}>Задать вопрос <ArrowIcon /></button></aside>
       </div>
     </section>
 
@@ -110,7 +110,7 @@ export default function SeoPage({ data }: { data: SeoPageData }) {
           <a className="footer-email" href="mailto:info@mkapital.online"><LineIcon name="mail" />info@mkapital.online</a>
         </div>
       </div>
-      <div className="footer-bottom"><span>© 2025 МК Онлайн — сервис по вопросам использования материнского капитала</span></div>
+      <div className="footer-bottom"><span>© 2025 МК Онлайн - сервис по вопросам использования материнского капитала</span></div>
     </footer>
 
     {modal && <ConsultationModal type={modal} onClose={() => setModal(null)} />}

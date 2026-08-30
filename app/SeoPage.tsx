@@ -7,16 +7,16 @@ const base = import.meta.env.BASE_URL;
 const home = base;
 
 const selectionSteps = [
-  { n: "01", icon: "message" as IconName, title: "Заявка", text: "Оставляете заявку и выбираете удобный способ получить консультацию." },
+  { n: "01", icon: "messages" as IconName, title: "Заявка", text: "Оставляете заявку и выбираете удобный способ получить консультацию." },
   { n: "02", icon: "person" as IconName, title: "Консультация", text: "Уточняем вашу ситуацию, цели и доступную сумму материнского капитала." },
-  { n: "03", icon: "document" as IconName, title: "Подбор варианта", text: "Рассматриваем доступные возможности и рассказываем об условиях подходящего решения." },
+  { n: "03", icon: "documentCheck" as IconName, title: "Подбор варианта", text: "Рассматриваем доступные возможности и рассказываем об условиях подходящего решения." },
   { n: "04", icon: "shield" as IconName, title: "Результат", text: "Сопровождаем вас при дальнейших действиях и остаёмся на связи до результата." },
 ];
 
 const formalizationSteps = [
-  { n: "01", icon: "message" as IconName, title: "Заявка", text: "Оставляете заявку и выбираете удобный способ получить консультацию." },
+  { n: "01", icon: "messages" as IconName, title: "Заявка", text: "Оставляете заявку и выбираете удобный способ получить консультацию." },
   { n: "02", icon: "person" as IconName, title: "Консультация и подбор", text: "Уточняем вашу ситуацию и рассматриваем доступные варианты." },
-  { n: "03", icon: "document" as IconName, title: "Оформление", text: "Рассказываем об условиях выбранного варианта и сопровождаем при оформлении." },
+  { n: "03", icon: "documentCheck" as IconName, title: "Оформление", text: "Рассказываем об условиях выбранного варианта и сопровождаем при оформлении." },
   { n: "04", icon: "shield" as IconName, title: "Результат", text: "Вы получаете выбранную услугу на согласованных условиях." },
 ];
 
@@ -51,7 +51,7 @@ export default function SeoPage({ data }: { data: SeoPageData }) {
         <div className="breadcrumbs" aria-label="Хлебные крошки"><a href={home}>Главная</a><span aria-hidden="true">/</span><span>{data.crumb}</span></div>
         <h1>{h1Before}<em>{data.h1Accent}</em>{h1After}</h1>
         {data.lead.map((paragraph, index) => <p className={index === data.lead.length - 1 ? "hero-strong" : undefined} key={paragraph}>{paragraph}</p>)}
-        <div className="seo-prompt"><LineIcon name="message" /><b>{data.prompt}</b></div>
+        <div className="seo-prompt"><LineIcon name="question" /><b>{data.prompt}</b></div>
         <button className="button button-primary" onClick={openSituation}>{data.heroCta}<ArrowIcon /></button>
         <div className="trust-row"><span><LineIcon name="heart" /> Бесплатная консультация</span><span><LineIcon name="shield" /> Конфиденциально</span><span><LineIcon name="pin" /> По всей России</span></div>
       </div>
@@ -61,12 +61,12 @@ export default function SeoPage({ data }: { data: SeoPageData }) {
     {data.sections.map((section, sectionIndex) => <section className={`seo-content section seo-section-${sectionIndex + 1} ${sectionIndex % 2 ? "seo-content-tinted" : ""} ${section.variant === "split" ? "seo-content-split" : ""}`} id={sectionIndex === 0 ? "options" : undefined} key={section.title}>
       <div className="seo-section-heading"><h2>{section.title}</h2><p>{section.intro}</p></div>
       <div className={`seo-card-grid count-${section.cards.length}`}>{section.cards.map((card, index) => <article className={index === section.cards.length - 1 && section.cards.length === 3 ? "seo-card featured" : "seo-card"} key={card.title}>
-        <span className={index % 2 ? "icon violet" : "icon"}><LineIcon name={card.icon} /></span><h3>{card.title}</h3><p>{card.text}</p>
-        {card.tag && <b className="seo-card-tag">{card.tag}</b>}
+        <span className={card.tone === "violet" ? "icon violet" : "icon"}><LineIcon name={card.icon} /></span><h3>{card.title}</h3><p>{card.text}</p>
+        {card.tag && <b className={`seo-card-tag${card.tone === "violet" ? " violet" : ""}`}>{card.tag}</b>}
         {card.link && <a className="seo-inline-link" href={`${base}${card.link}/`}>{card.linkLabel}<ArrowIcon /></a>}
         {section.ctaInLastCard && index === section.cards.length - 1 && <button className="button button-outline seo-card-cta" onClick={openSituation}>{section.cta}<ArrowIcon /></button>}
       </article>)}</div>
-      {section.note && section.ctaStyle === "outline" ? <div className="seo-note seo-note-action"><LineIcon name="sparkle" /><p>{section.note}</p><button className="button button-outline" onClick={openSituation}>{section.cta}<ArrowIcon /></button></div> : <>
+      {section.note && section.ctaStyle === "outline" ? <div className="seo-note seo-note-action"><LineIcon name={section.noteIcon ?? "sparkle"} /><p>{section.note}</p><button className="button button-outline" onClick={openSituation}>{section.cta}<ArrowIcon /></button></div> : <>
         {section.note && <div className="seo-note"><LineIcon name="shield" /><p>{section.note}</p></div>}
         {section.cta && !section.ctaInLastCard && <div className="center-action"><button className={`button ${section.ctaStyle === "outline" ? "button-outline" : "button-primary"}`} onClick={openSituation}>{section.cta}<ArrowIcon /></button></div>}
       </>}
@@ -78,16 +78,16 @@ export default function SeoPage({ data }: { data: SeoPageData }) {
       {data.showSupport && <div className="support-strip"><span className="support-mark"><LineIcon name="shield" /></span><div><h3>Сопровождаем на всём пути</h3><p>Остаёмся на связи, отвечаем на вопросы и объясняем следующие шаги.</p></div></div>}
     </section>
 
-    {data.benefits && <section className="section seo-benefits" id="benefits"><div className="seo-section-heading"><h2>Почему обращаются в МК Онлайн</h2></div><div className="seo-benefit-grid">{data.benefits.map((benefit, index) => <article key={benefit.title}><span className={index % 2 ? "icon violet" : "icon"}><LineIcon name={benefit.icon} /></span><div><h3>{benefit.title}</h3><p>{benefit.text}</p></div></article>)}</div></section>}
+    {data.benefits && <section className="section seo-benefits" id="benefits"><div className="seo-section-heading"><h2>Почему обращаются в МК Онлайн</h2></div><div className="seo-benefit-grid">{data.benefits.map((benefit) => <article key={benefit.title}><span className={benefit.tone === "violet" ? "icon violet" : "icon"}><LineIcon name={benefit.icon} /></span><div><h3>{benefit.title}</h3><p>{benefit.text}</p></div></article>)}</div></section>}
 
     <section className="section faq seo-faq" id="faq">
       <div className="seo-section-heading"><p className="eyebrow"><span /> Коротко о главном</p><h2>Вопросы и ответы</h2></div>
       <div className="seo-faq-layout"><div className="faq-list">{data.faqs.map(([question, answer], index) => { const isOpen = openFaq === index; return <article className={`faq-item${isOpen ? " open" : ""}`} key={question}><h3><button aria-expanded={isOpen} onClick={() => setOpenFaq(isOpen ? null : index)}><span><b>{String(index + 1).padStart(2, "0")}</b>{question}</span><i aria-hidden="true">{isOpen ? "−" : "+"}</i></button></h3><div className="faq-answer"><p>{answer}</p></div></article>; })}</div>
-        <aside className="question-card"><span><LineIcon name="message" /></span><h3>Не нашли ответ на свой вопрос?</h3><p>Задайте его специалисту — постараемся помочь разобраться.</p><button className="text-link" onClick={openConsultation}>Задать вопрос <ArrowIcon /></button></aside>
+        <aside className="question-card"><span><LineIcon name="question" /></span><h3>Не нашли ответ на свой вопрос?</h3><p>Задайте его специалисту — постараемся помочь разобраться.</p><button className="text-link" onClick={openConsultation}>Задать вопрос <ArrowIcon /></button></aside>
       </div>
     </section>
 
-    <footer><div className="footer-top"><div className="footer-brand"><a href={home}><img src={`${base}logo.webp`} alt="МК Онлайн" /></a><p>Сервис по вопросам использования материнского капитала</p></div><div><h3>Навигация</h3><a href="#options">Возможности</a><a href="#process">Как это работает</a><a href={benefitsHref}>Преимущества</a><a href="#faq">Вопросы</a></div><div className="footer-documents"><h3>Документы</h3><button onClick={() => setLegal("privacy")}>Политика обработки персональных данных</button><button onClick={() => setLegal("terms")}>Пользовательское соглашение</button><button onClick={() => setLegal("consent")}>Согласие на обработку данных</button></div><div className="footer-contacts"><h3>Мы на связи</h3><div className="contact-grid"><span>Telegram</span><span>WhatsApp</span><span>ВКонтакте</span><span>Макс</span></div><a className="footer-email" href="mailto:info@mkapital.online">info@mkapital.online</a></div></div><div className="footer-bottom"><span>© 2026 МК Онлайн — сервис по вопросам использования материнского капитала</span></div></footer>
+    <footer><div className="footer-top"><div className="footer-brand"><a href={home}><img src={`${base}logo.webp`} alt="МК Онлайн" /></a><p>Сервис по вопросам использования материнского капитала</p></div><div><h3>Навигация</h3><a href="#options">Возможности</a><a href="#process">Как это работает</a><a href={benefitsHref}>Преимущества</a><a href="#faq">Вопросы</a></div><div className="footer-documents"><h3>Документы</h3><button onClick={() => setLegal("privacy")}>Политика обработки персональных данных</button><button onClick={() => setLegal("terms")}>Пользовательское соглашение</button><button onClick={() => setLegal("consent")}>Согласие на обработку данных</button></div><div className="footer-contacts"><h3>Мы на связи</h3><div className="contact-grid"><span><LineIcon name="telegram" />Telegram</span><span><LineIcon name="whatsapp" />WhatsApp</span><span><LineIcon name="vk" />ВКонтакте</span><span><LineIcon name="max" />Макс</span></div><a className="footer-email" href="mailto:info@mkapital.online"><LineIcon name="mail" />info@mkapital.online</a></div></div><div className="footer-bottom"><span>© 2026 МК Онлайн — сервис по вопросам использования материнского капитала</span></div></footer>
 
     {modal && <ConsultationModal type={modal} onClose={() => setModal(null)} />}
     {legal && <LegalModal type={legal} onClose={() => setLegal(null)} />}

@@ -14,7 +14,7 @@ export function LineIcon({ name }: { name: IconName }) {
     case "personSearch": drawing = <><circle cx="10" cy="7" r="3.5"/><path d="M3.5 19v-1.5A6.5 6.5 0 0 1 15 13.3"/><circle cx="17" cy="17" r="3.5"/><path d="m19.5 19.5 2 2"/></>; break;
     case "more": drawing = <><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></>; break;
     case "family": drawing = <><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><circle cx="12" cy="6" r="3.2"/><path d="M2.5 20v-2a5.5 5.5 0 0 1 8-4.9M21.5 20v-2a5.5 5.5 0 0 0-8-4.9M6 21v-2.5a6 6 0 0 1 12 0V21"/></>; break;
-    case "question": drawing = <><path d="M4 4.5h16v11H9l-5 4v-15Z"/><path d="M9.7 9a2.5 2.5 0 1 1 3.8 2.1c-.9.5-1.5 1-1.5 2M12 15.8v.2"/></>; break;
+    case "question": drawing = <><path d="M7 3.5h10a3.5 3.5 0 0 1 3.5 3.5v7a3.5 3.5 0 0 1-3.5 3.5h-5.2L6.5 21v-3.7A3.5 3.5 0 0 1 3.5 14V7A3.5 3.5 0 0 1 7 3.5Z"/><path d="M9.5 8.5a2.7 2.7 0 1 1 4.1 2.3c-1 .6-1.6 1.2-1.6 2.3M12 15.8v.2"/></>; break;
     case "helpCircle": drawing = <><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.7 2.7 0 1 1 4.1 2.3c-1 .6-1.6 1.2-1.6 2.3M12 17v.2"/></>; break;
     case "target": drawing = <><circle cx="10.5" cy="13.5" r="8"/><circle cx="10.5" cy="13.5" r="4"/><circle cx="10.5" cy="13.5" r=".8" fill="currentColor" stroke="none"/><path d="m12 12 8.5-8.5M16 3.5h4.5V8"/></>; break;
     case "wallet": drawing = <><path d="M4.5 7.5V6A2.5 2.5 0 0 1 7 3.5h10.5v15H6A2.5 2.5 0 0 1 3.5 16V7.5h14"/><path d="M14 10h4.5v4H14a2 2 0 0 1 0-4Z"/><circle cx="14.5" cy="12" r=".5" fill="currentColor" stroke="none"/></> ; break;

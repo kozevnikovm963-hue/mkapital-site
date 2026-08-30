@@ -62,3 +62,28 @@ footer{margin-top:28px;margin-bottom:26px;padding:52px;background:#fff;border-ra
 /* Full-width composition for the main landing page only */
 .home-page .site-header,.home-page .hero,.home-page .section,.home-page .final-cta,.home-page footer{width:100%;max-width:none}.home-page .site-header{top:0;margin-top:0;padding-left:32px;padding-right:32px;border-radius:0}.home-page .hero{margin-top:0;border-radius:0}.home-page .section{padding-left:32px;padding-right:32px}.home-page .clarity{padding-left:0;padding-right:0}.home-page .clarity-panel{border-radius:0;padding-left:max(32px,calc((100vw - 1540px)/2));padding-right:max(32px,calc((100vw - 1540px)/2))}.home-page .final-cta{border-radius:0}.home-page footer{padding-left:32px;padding-right:32px}
 @media(max-width:680px){.home-page .site-header,.home-page .hero,.home-page .final-cta{margin-left:0;margin-right:0;border-radius:0}.home-page .site-header{margin-top:0;padding-left:12px;padding-right:12px}.home-page .section{padding-left:20px;padding-right:20px}.home-page .clarity{padding-left:0;padding-right:0}.home-page .clarity-panel{padding-left:23px;padding-right:23px;border-radius:0}.home-page footer{padding-left:20px;padding-right:20px}}
+
+/* Readability refinements requested after client review */
+.clarity-path i{display:none}
+.seo-page .step-card,.seo-page .step-card:last-child{border:0}
+.seo-page .seo-hero-copy>p{max-width:520px;font-size:17px;line-height:1.52}
+.seo-page .seo-prompt{font-size:15px}
+.seo-page .trust-row{font-size:14px}
+.seo-page .seo-section-heading h2{font-size:27px}
+.seo-page .seo-section-heading>p:not(.eyebrow){font-size:15px;line-height:1.52}
+.seo-page .seo-card h3{font-size:18px}
+.seo-page .seo-card p{font-size:15px}
+.seo-page .seo-note{font-size:15px}
+.seo-page .seo-content-split{grid-template-columns:340px minmax(0,1fr)}
+.seo-page .step-card h3{font-size:16px}
+.seo-page .step-card p{font-size:14px}
+.seo-page .support-strip h3{font-size:17px}
+.seo-page .support-strip p{font-size:14px}
+.seo-benefit-grid h3{font-size:15px}
+.seo-benefit-grid p{font-size:13px;line-height:1.48}
+.seo-page .faq-item h3 button{font-size:15px}
+.seo-page .faq-answer p{font-size:14px}
+.seo-page .question-card p{font-size:14px}
+@media(min-width:1001px){.home-page .hero-photo-layout{grid-template-columns:1.12fr .88fr}.home-page .hero-photo-layout .hero-copy{padding-right:42px}.home-page .hero-photo-layout h1{max-width:760px;font-size:clamp(44px,3.4vw,49px)}.home-page .hero-photo-layout .hero-lead{max-width:650px;font-size:22px;line-height:1.52}}
+@media(max-width:1000px){.seo-page .seo-content-split{grid-template-columns:1fr}}
+@media(max-width:680px){.seo-page .step-card{border:0}.seo-page .seo-section-heading h2{font-size:27px}}

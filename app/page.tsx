@@ -182,6 +182,16 @@ export default function Home() {
           <a className="footer-email" href="mailto:info@mkapital.online"><LineIcon name="mail" />info@mkapital.online</a>
         </div>
       </div>
+      <div className="footer-seo-links">
+        <h3>Полезные материалы</h3>
+        <div>
+          <a href="./materinskiy-kapital-nalichnymi/">Материнский капитал наличными</a>
+          <a href="./obnalichit-materinskiy-kapital/">Можно ли обналичить маткапитал</a>
+          <a href="./zaim-pod-materinskiy-kapital/">Займ под материнский капитал</a>
+          <a href="./ostatok-materinskogo-kapitala/">Как использовать остаток</a>
+          <a href="./na-chto-potratit-materinskiy-kapital/">На что потратить маткапитал</a>
+        </div>
+      </div>
       <div className="footer-bottom"><span>© 2025 МК Онлайн</span></div>
     </footer>
     {modal && <ConsultationModal type={modal} onClose={() => setModal(null)} />}

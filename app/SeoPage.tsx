@@ -110,6 +110,16 @@ export default function SeoPage({ data }: { data: SeoPageData }) {
           <a className="footer-email" href="mailto:info@mkapital.online"><LineIcon name="mail" />info@mkapital.online</a>
         </div>
       </div>
+      <div className="footer-seo-links">
+        <h3>Полезные материалы</h3>
+        <div>
+          <a href={`${base}materinskiy-kapital-nalichnymi/`}>Материнский капитал наличными</a>
+          <a href={`${base}obnalichit-materinskiy-kapital/`}>Можно ли обналичить маткапитал</a>
+          <a href={`${base}zaim-pod-materinskiy-kapital/`}>Займ под материнский капитал</a>
+          <a href={`${base}ostatok-materinskogo-kapitala/`}>Как использовать остаток</a>
+          <a href={`${base}na-chto-potratit-materinskiy-kapital/`}>На что потратить маткапитал</a>
+        </div>
+      </div>
       <div className="footer-bottom"><span>© 2025 МК Онлайн</span></div>
     </footer>
 

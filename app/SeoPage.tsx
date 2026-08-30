@@ -80,7 +80,38 @@ export default function SeoPage({ data }: { data: SeoPageData }) {
       </div>
     </section>
 
-    <footer className={data.footerVariant && data.footerVariant !== "standard" ? "seo-footer-compact" : undefined}><div className="footer-top"><div className="footer-brand"><a href={home}><img src={`${base}logo.webp`} alt="МК Онлайн" /></a>{!data.footerVariant && <p>Сервис по вопросам использования материнского капитала</p>}</div>{!data.footerVariant && <div><h3>Навигация</h3><a href="#options">Возможности</a><a href="#process">Как это работает</a><a href={benefitsHref}>Преимущества</a><a href="#faq">Вопросы</a></div>}<div className="footer-documents"><h3>Документы</h3><button onClick={() => setLegal("privacy")}>Политика обработки персональных данных</button><button onClick={() => setLegal("terms")}>Пользовательское соглашение</button>{!data.footerVariant && <button onClick={() => setLegal("consent")}>Согласие на обработку данных</button>}</div>{data.footerVariant ? <div className="footer-availability"><h3>Мы на связи</h3><p>Ежедневно с 9:00 до 20:00</p><button className="button button-small" onClick={openConsultation}>Получить консультацию</button></div> : <div className="footer-contacts"><h3>Мы на связи</h3><div className="contact-grid"><span><LineIcon name="telegram" />Telegram</span><span><LineIcon name="whatsapp" />WhatsApp</span><span><LineIcon name="vk" />ВКонтакте</span><span><LineIcon name="max" />Макс</span></div><a className="footer-email" href="mailto:info@mkapital.online"><LineIcon name="mail" />info@mkapital.online</a></div>}{data.footerVariant === "contact-social" && <div className="footer-messengers"><h3>Мы в мессенджерах</h3><div><span><LineIcon name="telegram" /></span><span><LineIcon name="whatsapp" /></span><span><LineIcon name="vk" /></span><span><LineIcon name="max" /></span></div></div>}</div><div className="footer-bottom"><span>{data.copyrightText ?? "© 2025 МК Онлайн — сервис по вопросам использования материнского капитала"}</span></div></footer>
+    <footer>
+      <div className="footer-top">
+        <div className="footer-brand">
+          <a href={home}><img src={`${base}logo.webp`} alt="МК Онлайн" /></a>
+          <p>Сервис по вопросам использования материнского капитала</p>
+        </div>
+        <div>
+          <h3>Навигация</h3>
+          <a href="#options">Возможности</a>
+          <a href="#process">Как это работает</a>
+          <a href={benefitsHref}>Преимущества</a>
+          <a href="#faq">Вопросы</a>
+        </div>
+        <div className="footer-documents">
+          <h3>Документы</h3>
+          <button onClick={() => setLegal("privacy")}>Политика обработки персональных данных</button>
+          <button onClick={() => setLegal("terms")}>Пользовательское соглашение</button>
+          <button onClick={() => setLegal("consent")}>Согласие на обработку данных</button>
+        </div>
+        <div className="footer-contacts">
+          <h3>Мы на связи</h3>
+          <div className="contact-grid">
+            <span><LineIcon name="telegram" />Telegram</span>
+            <span><LineIcon name="whatsapp" />WhatsApp</span>
+            <span><LineIcon name="vk" />ВКонтакте</span>
+            <span><LineIcon name="max" />Макс</span>
+          </div>
+          <a className="footer-email" href="mailto:info@mkapital.online"><LineIcon name="mail" />info@mkapital.online</a>
+        </div>
+      </div>
+      <div className="footer-bottom"><span>© 2025 МК Онлайн — сервис по вопросам использования материнского капитала</span></div>
+    </footer>
 
     {modal && <ConsultationModal type={modal} onClose={() => setModal(null)} />}
     {legal && <LegalModal type={legal} onClose={() => setLegal(null)} />}

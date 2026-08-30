@@ -182,7 +182,7 @@ export default function Home() {
           <a className="footer-email" href="mailto:info@mkapital.online"><LineIcon name="mail" />info@mkapital.online</a>
         </div>
       </div>
-      <div className="footer-bottom"><span>© 2025 МК Онлайн - сервис по вопросам использования материнского капитала</span></div>
+      <div className="footer-bottom"><span>© 2025 МК Онлайн</span></div>
     </footer>
     {modal && <ConsultationModal type={modal} onClose={() => setModal(null)} />}
     {legal && <LegalModal type={legal} onClose={() => setLegal(null)} />}
